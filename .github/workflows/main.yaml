@@ -15,3 +15,9 @@ jobs:
 
       - name: Build Project
         run: npm run build
+
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v2
+        with:
+          name: hello-world
+          path: dist/
