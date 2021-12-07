@@ -36,11 +36,29 @@ jobs:
       - name: Run tests
         run: npm run test:unit
 
-  deploy_app:
+  e2e_tests:
     runs-on: ubuntu-latest
     needs: [test_app]
+    container: testcafe/testcafe
+    with:
+      entrypoint: ["/bin/sh", "-c"]
+    script:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: npm install --include=dev
+
+      - name: Run e2e tests
+        run: /opt/testcafe/docker/testcafe-docker.sh chromium tests/e2e.js
+
+  deploy_app:
+    runs-on: ubuntu-latest
+    needs: [e2e_tests]
     steps:
-      - uses: actions/checkout@v2
+      - name: Download build_app workflow run artifacts
+        uses: actions/download-artifact@v2
+
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
