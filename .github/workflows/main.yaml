@@ -39,9 +39,6 @@ jobs:
   e2e_tests:
     runs-on: ubuntu-latest
     needs: [test_app]
-    container: testcafe/testcafe
-    with:
-      entrypoint: ["/bin/sh", "-c"]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
@@ -49,8 +46,10 @@ jobs:
       - name: Install dependencies
         run: npm install --include=dev
 
-      - name: Run e2e tests
-        run: /opt/testcafe/docker/testcafe-docker.sh chromium tests/e2e.js
+      - name: Install TestCafe from 'npm' and Run Tests
+        uses: DevExpress/testcafe-action@latest
+        with:
+          args: "chrome tests/e2e.js"
 
   deploy_app:
     runs-on: ubuntu-latest
