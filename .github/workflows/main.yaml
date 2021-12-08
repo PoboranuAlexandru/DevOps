@@ -56,7 +56,7 @@ jobs:
     needs: [e2e_tests]
     steps:
       - name: Download build_app workflow run artifacts
-        uses: actions/download-artifact@v2
+        uses: actions/checkout@v2
 
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         with:
