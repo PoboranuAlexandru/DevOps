@@ -3,7 +3,7 @@ import {Selector} from 'testcafe';
 // tests/e2e.js
 // Fixtures are test categories - each test has to be a part of one
 fixture `Hello World Tests`
-    .page `your-url-here`;
+    .page `https://hello-world-dss.herokuapp.com/`;
  
 test('Test1', async t => {
   // The t parameter we have here is our "control knob" - we can
