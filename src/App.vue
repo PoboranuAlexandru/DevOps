@@ -2,6 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <button onClick="() => throw new Error('err')">Click me to boom</button>
   </div>
 </template>
 

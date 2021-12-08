@@ -46,12 +46,6 @@ jobs:
       - name: Install dependencies
         run: npm install --include=dev
 
-      - name: Build Project
-        run: npm run build
-
-      - name: Run Project
-        run: npm run serve
-
       - name: Install TestCafe from 'npm' and Run Tests
         uses: DevExpress/testcafe-action@latest
         with:
