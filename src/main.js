@@ -1,11 +1,9 @@
 import App from './App.vue'
-import { createApp, Vue } from "vue";
+import { createApp } from "vue";
 import { createRouter } from "vue-router";
 import * as Sentry from "@sentry/vue";
 import { Integrations } from "@sentry/tracing";
 import HelloWorld from './components/HelloWorld.vue'
-
-Vue.config.productionTip = false
 
 const app = createApp(App);
 const router = createRouter({
